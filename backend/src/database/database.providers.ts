@@ -1,10 +1,14 @@
-
+import { ConfigService } from '@nestjs/config';
 import * as mongoose from 'mongoose';
+import { Constants } from 'src/common/constants/constants';
 
 export const databaseProviders = [
   {
-    provide: 'DATABASE_CONNECTION',
-    useFactory: (): Promise<typeof mongoose> =>
-      mongoose.connect(process.env.DATABASE_CONNECTION_URI),
+    provide: Constants.DATABASE_CONNECTION,
+    inject: [ConfigService],
+    useFactory: async (
+      configService: ConfigService,
+    ): Promise<typeof mongoose> =>
+      mongoose.connect(configService.get<string>('DATABASE_URI')),
   },
 ];

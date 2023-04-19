@@ -7,13 +7,14 @@ import {
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Model } from 'mongoose';
-import { IUser } from '../interfaces/User.interface';
+import { IUser } from '../common/interfaces/User.interface';
 import * as bcrypt from 'bcrypt';
+import { Constants } from 'src/common/constants/constants';
 const saltOrRounds = 10;
 @Injectable()
 export class UsersService {
   constructor(
-    @Inject('USER_MODEL')
+    @Inject(Constants.USER_MODEL)
     private userModel: Model<IUser>,
   ) {}
 
@@ -60,7 +61,7 @@ export class UsersService {
   async update(id: string, updateUserDto: UpdateUserDto) {
     const {username} = updateUserDto
     return this.userModel
-      .findOneAndUpdate({ _id: id }, { $set: {username:username} }, { new: true })
+      .findOneAndUpdate({ _id: id }, { $set: {username} }, { new: true })
       .select({ password: 0 })
       .exec();
   }

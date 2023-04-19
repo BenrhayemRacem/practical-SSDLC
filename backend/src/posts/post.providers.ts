@@ -1,12 +1,12 @@
 import { Connection } from 'mongoose';
-import { UserSchema } from './entities/user.entity';
+import { PostSchema } from './entities/post.entity';
 import { Constants } from 'src/common/constants/constants';
 
-export const usersProviders = [
+export const postsProviders = [
   {
-    provide: Constants.USER_MODEL,
+    provide: Constants.POST_MODEL,
     useFactory: (connection: Connection) =>
-      connection.model('User', UserSchema),
+      connection.model('Post', PostSchema),
     inject: [Constants.DATABASE_CONNECTION],
   },
 ];

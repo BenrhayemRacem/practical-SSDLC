@@ -1,4 +1,6 @@
 export const enum Constants {
-  USER_MODEL = 'USER_MODEL',
   DATABASE_CONNECTION = 'DATABASE_CONNECTION',
+  USER_MODEL = 'USER_MODEL',
+  POST_MODEL = 'POST_MODEL',
+  
 }

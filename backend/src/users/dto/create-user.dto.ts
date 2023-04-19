@@ -1,9 +1,9 @@
 
 export class CreateUserDto {
     
-    username:String;
+    username:string;
     
-    email : String;
+    email : string;
     
-    password :String ;
+    password :string ;
 }

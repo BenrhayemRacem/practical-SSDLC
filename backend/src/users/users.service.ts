@@ -58,8 +58,9 @@ export class UsersService {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
+    const {username} = updateUserDto
     return this.userModel
-      .findOneAndUpdate({ _id: id }, { $set: updateUserDto }, { new: true })
+      .findOneAndUpdate({ _id: id }, { $set: {username:username} }, { new: true })
       .select({ password: 0 })
       .exec();
   }

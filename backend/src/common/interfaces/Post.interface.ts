@@ -5,4 +5,5 @@ export interface IPost extends Document {
   readonly content: string;
   readonly images: [string];
   readonly owner: string;
+  readonly comments : [string];
 }

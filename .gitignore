@@ -1,3 +1,5 @@
+#________________________________ Global________________________________________
+
 # compiled output
 dist
 node_modules
@@ -13,10 +15,6 @@ lerna-debug.log*
 
 # OS
 .DS_Store
-
-# Tests
-coverage
-.nyc_output
 
 # IDEs and editors
 .idea
@@ -39,3 +37,32 @@ coverage
 
 #package-lock
 package-lock.json
+
+#__________________________________Backend________________________________________
+
+# Tests
+coverage
+.nyc_output
+
+
+#________________________ frontend __________________________
+
+# Compiled output
+tmp
+out-tsc
+bazel-out
+
+# Visual Studio Code
+.history/*
+
+# Miscellaneous
+frontend/.angular/cache
+frontend/.sass-cache/
+frontend/connect.lock
+frontend/coverage
+frontend/libpeerconnection.log
+frontend/testem.log
+frontend/typings
+
+# System files
+Thumbs.db

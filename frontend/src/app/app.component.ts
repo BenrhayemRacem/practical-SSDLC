@@ -23,11 +23,11 @@ export class AppComponent implements OnInit {
   navigateToAddPost(){
     const isTokenValid = this.authService.checkTokenValidity()
     if(isTokenValid){
-      
+
       this.router.navigate(["add","post"])
     }else {
       this.router.navigate(["login"])
-    } 
+    }
   }
 
   navigateToProfile(){
@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
       this.router.navigate([""])
     }else {
       this.router.navigate(["login"])
-    } 
+    }
   }
-  
+
 }

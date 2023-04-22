@@ -14,7 +14,7 @@ export class AuthService {
   constructor(private http:HttpClient) { }
 
   createUser(user:ISignup) {
-    return this.http.post<ISignupResponse>(environment.apiBaseUrl + "/users/",user) 
+    return this.http.post<ISignupResponse>(environment.apiBaseUrl + "/users/",user)
   }
 
   login (user:ILogin){
@@ -34,16 +34,16 @@ export class AuthService {
         const validity = localStorage.getItem('practical-SSDLC-token-validity');
         if(!validity) {
           this.logout()
-          return false 
+          return false
         }else {
           const validityDate = new Date(validity);
           const now = new Date()
           if(validityDate < now) {
             this.logout()
-            return false 
+            return false
           }else {
             return true ;
-            
+
           }
         }
       }

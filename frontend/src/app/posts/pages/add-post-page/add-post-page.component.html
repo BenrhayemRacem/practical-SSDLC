@@ -32,7 +32,7 @@
           [errorStateMatcher]="matcher"
           placeholder="Ex. dummy_content"
         > </textarea>
-      
+
         <!-- <mat-error
           *ngIf="
             contentFormControl.hasError('maxlength') &&
@@ -68,11 +68,10 @@
         <mat-error *ngIf="titleFormControl.hasError('required')">
           Photos are <strong>required</strong>
         </mat-error>
-     
+
     </div>
-    
+
     <button mat-raised-button color="accent" type="submit" (click)="submit()" [disabled]="!postFormControl.valid">
       ADD
     </button>
   </form>
-  

@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
     if(isValid){
       this.router.navigate([""])
     }
-    
-      
+
+
   }
 
   emailFormControl = new FormControl('', [

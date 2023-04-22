@@ -4,7 +4,7 @@ import { CardComponent } from './card/card.component';
 import { PostsListPageComponent } from './pages/posts-list-page/posts-list-page.component';
 import {MatCardModule} from '@angular/material/card'; 
 import {MatGridListModule} from '@angular/material/grid-list'; 
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
   imports: [
     CommonModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    HttpClientModule
   ]
 })
 export class PostsModule { }

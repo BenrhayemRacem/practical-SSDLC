@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PostsListPageComponent } from './posts/pages/posts-list-page/posts-list-page.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
+import { AddPostPageComponent } from './posts/pages/add-post-page/add-post-page.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path:'login',
     component:LoginComponent
+  },
+  {
+    path:'add/post',
+    component:AddPostPageComponent
   }
 ];
 

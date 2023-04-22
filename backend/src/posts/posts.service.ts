@@ -1,4 +1,9 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Constants } from 'src/common/constants/constants';
@@ -18,10 +23,19 @@ export class PostsService {
     private userModel: Model<IUser>,
   ) {}
 
-  async create(ownerId: string, createPostDto: CreatePostDto) {
+  async create(
+    ownerId: string,
+    createPostDto: CreatePostDto,
+    files: Array<Express.Multer.File>,
+  ) {
+    if (files.length == 0) {
+      throw new BadRequestException('no image uploaded');
+    }
+    const images = files.map((file) => file.filename);
     const newPost = {
       ...createPostDto,
       owner: ownerId,
+      images,
     };
     const createdPost = await new this.postModel(newPost).save();
     this.userModel
@@ -98,5 +112,3 @@ export class PostsService {
       });
   }
 }
-
-

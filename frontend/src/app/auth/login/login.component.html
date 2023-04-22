@@ -1,3 +1,4 @@
+<div class="container">
 <form class="example-form container" [formGroup]="loginFormControl">
     <div>
       <mat-form-field class="example-full-width">
@@ -59,4 +60,7 @@
       Login
     </button>
   </form>
-  
+  <div>
+    <button mat-raised-button color="primary" (click)="redirectToSignup">signup</button>
+  </div>
+</div>

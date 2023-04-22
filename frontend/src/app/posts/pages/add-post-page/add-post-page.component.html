@@ -1,0 +1,78 @@
+<form class="example-form container" [formGroup]="postFormControl">
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Title</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="title"
+          [errorStateMatcher]="matcher"
+          placeholder="Ex. My Title"
+        />
+        <mat-error
+          *ngIf="
+            titleFormControl.hasError('maxlength') &&
+            !titleFormControl.hasError('required')
+          "
+        >
+        Title is  too long
+        </mat-error>
+        <mat-error *ngIf="titleFormControl.hasError('required')">
+          Title is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Content</mat-label>
+        <textarea
+          type="text"
+          matInput
+          formControlName="content"
+          [errorStateMatcher]="matcher"
+          placeholder="Ex. dummy_content"
+        > </textarea>
+      
+        <!-- <mat-error
+          *ngIf="
+            contentFormControl.hasError('maxlength') &&
+            !contentFormControl.hasError('required')
+          "
+        >
+          content too long
+        </mat-error> -->
+        <mat-error *ngIf="contentFormControl.hasError('required')">
+          Content is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+        <div>
+        <mat-label>Photos</mat-label>
+        <input
+          type="file"
+          formControlName="images"
+          placeholder="Ex. My Title"
+          multiple
+        />
+      </div>
+        <mat-hint>max 5 photos allowed</mat-hint>
+        <!-- <mat-error
+          *ngIf="
+            titleFormControl.hasError('maxlength') &&
+            !titleFormControl.hasError('required')
+          "
+        >
+        Title is  too long
+        </mat-error> -->
+        <mat-error *ngIf="titleFormControl.hasError('required')">
+          Photos are <strong>required</strong>
+        </mat-error>
+     
+    </div>
+    
+    <button mat-raised-button color="accent" type="submit" (click)="submit()" [disabled]="!postFormControl.valid">
+      ADD
+    </button>
+  </form>
+  

@@ -1,20 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { MyErrorStateMatcher } from '../utilities/myErrorStateMatcher';
+import { MyErrorStateMatcher } from '../../../common/utilities/myErrorStateMatcher';
 import {
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { ILogin } from 'src/common/interfaces/users/ILogin.interface';
-
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
-  constructor(private authService:AuthService){}
+export class LoginComponent implements OnInit {
+  constructor(
+    private authService: AuthService,
+    private toastr: ToastrService,
+    private router:Router
+  ) {}
+
+  ngOnInit(): void {
+    const isValid = this.authService.checkTokenValidity()
+    if(isValid){
+      this.router.navigate([""])
+    }
+    
+      
+  }
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -35,19 +49,28 @@ export class LoginComponent {
     const email = this.loginFormControl.get('email')!.value;
     const password = this.loginFormControl.get('password')!.value;
 
-    const user :ILogin= {
+    const user: ILogin = {
       email,
-      password
-    }
+      password,
+    };
 
     this.authService.login(user).subscribe({
-      next: data => {
-        const {token} = data ;
-        localStorage.setItem('practical-SSDLC-token' , token)
+      next: (data) => {
+        const { token } = data;
+        let currentDate = new Date()
+        currentDate.setDate(currentDate.getDate()+1);
+        localStorage.setItem('practical-SSDLC-token', token);
+        localStorage.setItem('practical-SSDLC-token-validity', currentDate.toString());
+        this.toastr.success("Welcome!")
+        this.router.navigate([""])
       },
-      error : err =>{
-        console.log(err)
-      }
-    })
+      error: (err) => {
+        this.toastr.error(err.error.message)
+        this.authService.logout()
+      },
+    });
+  }
+  redirectToSignup(){
+    this.router.navigate(["signup"])
   }
 }

@@ -44,6 +44,9 @@ package-lock.json
 coverage
 .nyc_output
 
+#file_upload
+uploads
+
 
 #________________________ frontend __________________________
 

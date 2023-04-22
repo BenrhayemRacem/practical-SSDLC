@@ -20,4 +20,32 @@ export class AuthService {
   login (user:ILogin){
     return this.http.post<ILoginResponse>(environment.apiBaseUrl + "/auth/login", user)
   }
+  logout(){
+    localStorage.removeItem('practical-SSDLC-token')
+    localStorage.removeItem('practical-SSDLC-token-validity')
+  }
+
+  checkTokenValidity():boolean{
+    const token = localStorage.getItem('practical-SSDLC-token')
+      if(!token) {
+        this.logout()
+        return false ;
+      }else{
+        const validity = localStorage.getItem('practical-SSDLC-token-validity');
+        if(!validity) {
+          this.logout()
+          return false 
+        }else {
+          const validityDate = new Date(validity);
+          const now = new Date()
+          if(validityDate < now) {
+            this.logout()
+            return false 
+          }else {
+            return true ;
+            
+          }
+        }
+      }
+  }
 }

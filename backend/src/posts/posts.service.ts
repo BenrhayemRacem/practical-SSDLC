@@ -84,4 +84,19 @@ export class PostsService {
       .exec();
     return isRemoved;
   }
+  async getPostsIntroduction() {
+    return this.postModel
+      .find()
+      .populate({
+        path: 'owner',
+        select: 'username',
+      })
+      .select({
+        title: 1,
+        content: 1,
+        images: 1,
+      });
+  }
 }
+
+

@@ -11,8 +11,8 @@ export class PostsController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Request() req,@Body() createPostDto: CreatePostDto) {
-    return this.postsService.create(req.user.id,createPostDto);
+  create(@Request() req, @Body() createPostDto: CreatePostDto) {
+    return this.postsService.create(req.user.id, createPostDto);
   }
 
   @Get()
@@ -25,15 +25,20 @@ export class PostsController {
     return this.postsService.findOne(id);
   }
 
-  @UseGuards(JwtAuthGuard,PostPermissionGuard)
+  @UseGuards(JwtAuthGuard, PostPermissionGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
     return this.postsService.update(id, updatePostDto);
   }
 
-  @UseGuards(JwtAuthGuard,PostPermissionGuard)
+  @UseGuards(JwtAuthGuard, PostPermissionGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.postsService.remove(id);
+  }
+
+  @Get('all/introduction')
+  getIntroduction() {
+    return this.postsService.getPostsIntroduction();
   }
 }

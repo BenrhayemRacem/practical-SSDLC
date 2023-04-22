@@ -20,7 +20,7 @@ export class UsersService {
     private userModel: Model<IUser>,
   ) {}
 
-  async create(createUserDto: CreateUserDto): Promise<IUser> {
+  async create(createUserDto: CreateUserDto) {
     const isExist = await this.userModel
       .find({
         $or: [
@@ -35,7 +35,10 @@ export class UsersService {
     const hash = await bcrypt.hash(createUserDto.password, saltOrRounds);
     createUserDto.password = hash;
     const createdUser = new this.userModel(createUserDto);
-    return createdUser.save();
+    const saved = await createdUser.save();
+    return {
+      message : "account created successfully"
+    }
   }
 
   async findAll(): Promise<IUser[]> {

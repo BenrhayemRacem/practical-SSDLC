@@ -9,7 +9,7 @@ import { IPostDetails } from 'src/common/interfaces/posts/IPostDetails.interface
   providedIn: 'root'
 })
 export class PostService {
-  
+
   constructor(private http:HttpClient) { }
 
   getAllPosts() {

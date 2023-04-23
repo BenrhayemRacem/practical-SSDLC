@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { IPostIntroduction } from 'src/common/interfaces/posts/IPostIntroduction.interface';
 import { environment } from 'src/environments/environment';
 import { HttpHeaders } from '@angular/common/http';
+import { IPostDetails } from 'src/common/interfaces/posts/IPostDetails.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,8 @@ export class PostService {
       })
     };
     return this.http.post(environment.apiBaseUrl +"/posts",formData ,httpOptions)
+  }
+  getOnePost(id:string) {
+    return this.http.get<IPostDetails>(environment.apiBaseUrl+"/posts/"+id)
   }
 }

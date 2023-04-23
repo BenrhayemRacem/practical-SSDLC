@@ -7,12 +7,22 @@ import { AuthModule } from './auth/auth.module';
 import { PostsModule } from './posts/posts.module';
 import { CommentsModule } from './comments/comments.module';
 import configuration from './config/configuration';
-
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 @Module({
-  imports: [UsersModule , ConfigModule.forRoot({
-    isGlobal : true ,
-    load:[configuration]
-  }), AuthModule, PostsModule, CommentsModule],
+  imports: [
+    UsersModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [configuration],
+    }),
+    AuthModule,
+    PostsModule,
+    CommentsModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

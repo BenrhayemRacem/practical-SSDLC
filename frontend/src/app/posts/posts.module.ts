@@ -10,13 +10,17 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import { ToastrModule } from 'ngx-toastr';
+import { PostDetailsPageComponent } from './pages/post-details-page/post-details-page.component';
+import { CommentComponent } from './comment/comment.component';
 
 
 @NgModule({
   declarations: [
     CardComponent,
     PostsListPageComponent,
-    AddPostPageComponent
+    AddPostPageComponent,
+    PostDetailsPageComponent,
+    CommentComponent
   ],
   imports: [
     CommonModule,

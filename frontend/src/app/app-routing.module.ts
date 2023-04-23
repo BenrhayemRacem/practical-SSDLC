@@ -4,6 +4,7 @@ import { PostsListPageComponent } from './posts/pages/posts-list-page/posts-list
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AddPostPageComponent } from './posts/pages/add-post-page/add-post-page.component';
+import { PostDetailsPageComponent } from './posts/pages/post-details-page/post-details-page.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path:'add/post',
     component:AddPostPageComponent
+  },
+  {
+    path:'post/:id',
+    component:PostDetailsPageComponent
   }
 ];
 

@@ -48,10 +48,10 @@ export class AddPostPageComponent implements OnInit {
   submit() {
     console.log(this.postFormControl.get('images')?.value);
     const formData: any = new FormData();
-    // for(var i = 0; i < this.files!.length; i++) {
-    //   formData.append('files' , this.files?.item(i))
-    // }
-    formData.append('files', this.files?.item(0));
+    for(var i = 0; i < this.files!.length; i++) {
+      formData.append('files' , this.files?.item(i))
+    }
+    //formData.append('files', this.files?.item(0));
     formData.append('title', this.postFormControl.get('title')!.value);
     formData.append('content', this.postFormControl.get('content')!.value);
     this.postService.addNewPost(formData).subscribe({

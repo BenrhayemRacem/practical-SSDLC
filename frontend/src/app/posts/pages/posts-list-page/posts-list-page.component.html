@@ -1,8 +1,8 @@
 
 
-<div class="container" *ngFor="let post of postsIntroduction">
+<div class="container" >
 
-    <app-card [postIntroduction]=post></app-card>
+    <app-card *ngFor="let post of postsIntroduction" [postIntroduction]=post></app-card>
 
 
 </div>

@@ -1,11 +1,32 @@
 <div class="container">
-<div class="title">{{post?.title}}</div>
-<div class="author">author: {{post?.owner?.username}}</div>
-<p>{{post?.content}}</p>
-<div class="image-container">
-    <img  *ngFor="let image of post?.images" src="{{imageBaseUrl}}{{image}}" alt="content" class="image-element">
-</div>
-<div>
-    <app-comment *ngFor="let comment of post?.comments" [comment]="comment" [isCurrentUserComment]="findCurrentUserComments(comment._id)" ></app-comment>
-</div>
+  <div class="title">{{ post?.title }}</div>
+  <div class="author">author: {{ post?.owner?.username }}</div>
+  <p>{{ post?.content }}</p>
+  <div class="image-container">
+    <img
+      *ngFor="let image of post?.images"
+      src="{{ imageBaseUrl }}{{ image }}"
+      alt="content"
+      class="image-element"
+    />
+  </div>
+  <div>
+    <div>
+      <button
+        mat-raised-button
+        color="accent"
+        class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon"
+        [disabled]="isAddCommentButtonDisabled"
+        (click)="openAddDialog()"
+      >
+        ADD COMMENT
+      </button>
+    </div>
+    <app-comment
+      *ngFor="let comment of post?.comments"
+      [comment]="comment"
+      [isCurrentUserComment]="findCurrentUserComments(comment._id)"
+    ></app-comment>
+  </div>
 </div>

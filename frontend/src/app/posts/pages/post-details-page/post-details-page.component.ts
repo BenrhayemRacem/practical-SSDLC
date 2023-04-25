@@ -7,7 +7,10 @@ import { environment } from 'src/environments/environment';
 import { CommentService } from '../../comment.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ICurrentCommentsForPost } from 'src/common/interfaces/comments/ICurrentUserCommentsForPost.interface';
-
+import {
+  MatDialog,
+} from '@angular/material/dialog';
+import { EditCommentDialogComponent } from '../../edit-comment-dialog/edit-comment-dialog.component';
 @Component({
   selector: 'app-post-details-page',
   templateUrl: './post-details-page.component.html',
@@ -18,13 +21,15 @@ export class PostDetailsPageComponent implements OnInit {
   post: IPostDetails | null = null;
   currentUserComments: ICurrentCommentsForPost[] | null = null;
   imageBaseUrl = environment.apiBaseUrl + '/';
+  isAddCommentButtonDisabled = true ;
   constructor(
     private router: Router,
     private currentRoute: ActivatedRoute,
     private postService: PostService,
     private toast: ToastrService,
     private commentService: CommentService,
-    private authService: AuthService
+    private authService: AuthService,
+    public editDialog: MatDialog,
   ) {
     this.currentRoute.params.subscribe((params) => {
       this.id = params['id'];
@@ -55,6 +60,7 @@ export class PostDetailsPageComponent implements OnInit {
         },
       });
     }
+    this.isAddCommentButtonDisabled = !isTokenValid
   }
 
   findCurrentUserComments(commentId: string) {
@@ -65,5 +71,31 @@ export class PostDetailsPageComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  openAddDialog(){
+    const dialogRef = this.editDialog.open(EditCommentDialogComponent, {
+      data: {
+        owner: "Wanna add a comment?",
+        content: "",
+        action: "Add"
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      if (result) {
+        this.commentService.addComment(result,this.post?._id!).subscribe({
+          next: (data) => {
+            console.log(data);
+            this.toast.success('comment added !');
+          },
+          error: (err) => {
+            console.log(err);
+            this.toast.error('error adding comment');
+          },
+        });
+      }
+    });
   }
 }

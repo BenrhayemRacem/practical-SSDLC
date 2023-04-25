@@ -12,7 +12,7 @@ export class CommentService {
   constructor(private http: HttpClient) {}
 
   getCurrentUserCommentsForPost(postId: string) {
-    const httpOptions = AddTOkenToHeaderUtility()
+    const httpOptions = AddTOkenToHeaderUtility();
 
     return this.http.get<ICurrentCommentsForPost[]>(
       environment.apiBaseUrl + '/comments/post/' + postId,
@@ -20,12 +20,27 @@ export class CommentService {
     );
   }
 
-  editComment(id:string , newContent:string){
-    const httpOptions = AddTOkenToHeaderUtility()
-    return this.http.patch(environment.apiBaseUrl + '/comments/'+id, {content:newContent},httpOptions)
+  editComment(id: string, newContent: string) {
+    const httpOptions = AddTOkenToHeaderUtility();
+    return this.http.patch(
+      environment.apiBaseUrl + '/comments/' + id,
+      { content: newContent },
+      httpOptions
+    );
   }
-  deleteComment(id:string) {
-    const httpOptions = AddTOkenToHeaderUtility()
-    return this.http.delete(environment.apiBaseUrl + '/comments/'+id,httpOptions)
+  deleteComment(id: string) {
+    const httpOptions = AddTOkenToHeaderUtility();
+    return this.http.delete(
+      environment.apiBaseUrl + '/comments/' + id,
+      httpOptions
+    );
+  }
+  addComment( commentContent: string, postId: string) {
+    const httpOptions = AddTOkenToHeaderUtility();
+    return this.http.post(
+      environment.apiBaseUrl + '/comments/',
+      { content: commentContent, post: postId },
+      httpOptions
+    );
   }
 }

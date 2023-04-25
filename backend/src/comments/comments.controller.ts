@@ -33,16 +33,22 @@ export class CommentsController {
   findOne(@Param('id') id: string) {
     return this.commentsService.findOne(id);
   }
-  
-  @UseGuards(JwtAuthGuard,CommentPermissionGuard)
+
+  @UseGuards(JwtAuthGuard, CommentPermissionGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCommentDto: UpdateCommentDto) {
     return this.commentsService.update(id, updateCommentDto);
   }
 
-  @UseGuards(JwtAuthGuard,CommentPermissionGuard)
+  @UseGuards(JwtAuthGuard, CommentPermissionGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.commentsService.remove(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/post/:id')
+  getCurrentUserCommentsForPost(@Request() req, @Param('id') id:string) {
+    return this.commentsService.getCurrentUserCommentsForPost(id, req.user.id);
   }
 }

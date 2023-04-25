@@ -1,19 +1,18 @@
 <div class="container">
-<div class="owner">
-    {{comment?.owner?.username}} <span *ngIf="isCurrentUserComment">(YOU)</span> : &nbsp;
-</div>
-<div class="comment-utility-container">
-    <div>{{comment?.content}}</div>
+  <div class="owner">
+    {{ comment?.owner?.username }}
+    <span *ngIf="isCurrentUserComment">(YOU)</span> : &nbsp;
+  </div>
+  <div class="comment-utility-container">
+    <div>{{ comment?.content }}</div>
     <div *ngIf="isCurrentUserComment">
-        <button (click)="openEditDialog()"
-    mat-icon-button>
-    <mat-icon>edit</mat-icon>
-  </button>
+      <button (click)="openEditDialog()" mat-icon-button>
+        <mat-icon>edit</mat-icon>
+      </button>
 
-  <button
-    mat-icon-button>
-    <mat-icon>delete</mat-icon>
-  </button>
+      <button mat-icon-button (click)="openDeleteDialog()">
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
-</div>
+  </div>
 </div>

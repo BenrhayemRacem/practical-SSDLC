@@ -4,6 +4,7 @@ import { IPostIntroduction } from 'src/common/interfaces/posts/IPostIntroduction
 import { environment } from 'src/environments/environment';
 import { HttpHeaders } from '@angular/common/http';
 import { IPostDetails } from 'src/common/interfaces/posts/IPostDetails.interface';
+import { AddTOkenToHeaderUtility } from 'src/common/utilitites/addTokenHeader';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +17,7 @@ export class PostService {
     return this.http.get<IPostIntroduction[]>(environment.apiBaseUrl + '/posts/all/introduction')
   }
   addNewPost(formData:any){
-    const token = localStorage.getItem('practical-SSDLC-token')
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${token}`
-      })
-    };
+    const httpOptions = AddTOkenToHeaderUtility()
     return this.http.post(environment.apiBaseUrl +"/posts",formData ,httpOptions)
   }
   getOnePost(id:string) {

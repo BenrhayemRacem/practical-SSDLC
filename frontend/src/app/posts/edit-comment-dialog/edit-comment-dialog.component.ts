@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 export interface DialogData {
   owner: string;
   content: string;
+  action:string;
 }
 
 @Component({

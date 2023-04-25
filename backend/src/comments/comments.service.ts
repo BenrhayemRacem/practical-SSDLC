@@ -86,4 +86,8 @@ export class CommentsService {
       .exec();
     return deleted;
   }
+
+  getCurrentUserCommentsForPost(postId:string , ownerId:string){
+    return this.commentModel.find({post:postId , owner:ownerId}).exec()
+  }
 }

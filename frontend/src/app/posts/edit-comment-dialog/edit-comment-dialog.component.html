@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Hi {{data.owner}}</h1>
 <div mat-dialog-content>
   <mat-form-field appearance="fill">
-    <mat-label>Edit Comment</mat-label>
+    <mat-label>{{data.action}} Comment</mat-label>
     <input matInput [(ngModel)]="data.content">
   </mat-form-field>
 </div>

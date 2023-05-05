@@ -48,20 +48,26 @@ export class AddPostPageComponent implements OnInit {
   submit() {
     console.log(this.postFormControl.get('images')?.value);
     const formData: any = new FormData();
-    for(var i = 0; i < this.files!.length; i++) {
-      formData.append('files' , this.files?.item(i))
+    //limit number of uploaded files to 5
+    if(this.files!.length>5 ) {
+      this.toastr.warning("you can only add a maximum of 5 photos")
+    }else {
+      for(var i = 0; i < this.files!.length; i++) {
+        formData.append('files' , this.files?.item(i))
+      }
+
+      formData.append('title', this.postFormControl.get('title')!.value);
+      formData.append('content', this.postFormControl.get('content')!.value);
+      this.postService.addNewPost(formData).subscribe({
+        next: _ => {
+          this.toastr.success("Post created successfully")
+          this.router.navigate([''])
+        },
+        error: (err) => {
+          this.toastr.error(err.error.message)
+        },
+      });
     }
-    //formData.append('files', this.files?.item(0));
-    formData.append('title', this.postFormControl.get('title')!.value);
-    formData.append('content', this.postFormControl.get('content')!.value);
-    this.postService.addNewPost(formData).subscribe({
-      next: _ => {
-        this.toastr.success("Post created successfully")
-        this.router.navigate([''])
-      },
-      error: (err) => {
-        this.toastr.error(err.error.message)
-      },
-    });
+
   }
 }

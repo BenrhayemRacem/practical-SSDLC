@@ -31,7 +31,11 @@ export class PostsController {
       storage: diskStorage({
         destination: './uploads',
         filename: editFileName,
+
       }),
+      limits : {
+        fileSize: 8000000
+      }
     }),
   )
   create(

@@ -55,7 +55,7 @@ export class AddPostPageComponent implements OnInit {
       for(var i = 0; i < this.files!.length; i++) {
         formData.append('files' , this.files?.item(i))
       }
-      
+
       formData.append('title', this.postFormControl.get('title')!.value);
       formData.append('content', this.postFormControl.get('content')!.value);
       this.postService.addNewPost(formData).subscribe({
@@ -68,6 +68,6 @@ export class AddPostPageComponent implements OnInit {
         },
       });
     }
-    
+
   }
 }

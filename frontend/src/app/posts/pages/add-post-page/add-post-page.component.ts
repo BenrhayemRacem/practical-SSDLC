@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { MyErrorStateMatcher } from '../../../../common/utilities/myErrorStateMatcher';
 import { PostService } from '../../post.service';
 import { ToastrService } from 'ngx-toastr';
-
+import * as sanitizeHtml from 'sanitize-html';
 @Component({
   selector: 'app-add-post-page',
   templateUrl: './add-post-page.component.html',
@@ -56,8 +56,8 @@ export class AddPostPageComponent implements OnInit {
         formData.append('files' , this.files?.item(i))
       }
 
-      formData.append('title', this.postFormControl.get('title')!.value);
-      formData.append('content', this.postFormControl.get('content')!.value);
+      formData.append('title', sanitizeHtml( this.postFormControl.get('title')!.value!));
+      formData.append('content',  sanitizeHtml(this.postFormControl.get('content')!.value!));
       this.postService.addNewPost(formData).subscribe({
         next: _ => {
           this.toastr.success("Post created successfully")

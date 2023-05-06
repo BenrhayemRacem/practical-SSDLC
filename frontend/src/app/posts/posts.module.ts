@@ -12,9 +12,9 @@ import {MatInputModule} from '@angular/material/input';
 import { ToastrModule } from 'ngx-toastr';
 import { PostDetailsPageComponent } from './pages/post-details-page/post-details-page.component';
 import { CommentComponent } from './comment/comment.component';
-import {MatIconModule} from '@angular/material/icon'; 
+import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
-import { EditCommentDialogComponent } from './edit-comment-dialog/edit-comment-dialog.component'; 
+import { EditCommentDialogComponent } from './edit-comment-dialog/edit-comment-dialog.component';
 import { SafeHTMLPipe } from '../pipes/safe-html.pipe';
 
 @NgModule({

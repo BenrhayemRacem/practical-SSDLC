@@ -4,7 +4,7 @@
     <span *ngIf="isCurrentUserComment">(YOU)</span> : &nbsp;
   </div>
   <div class="comment-utility-container">
-    <div>{{ comment?.content }}</div>
+    <div [innerHTML]="comment?.content! | safeHTML"></div>
     <div *ngIf="isCurrentUserComment">
       <button (click)="openEditDialog()" mat-icon-button>
         <mat-icon>edit</mat-icon>

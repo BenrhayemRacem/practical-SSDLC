@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="title">{{ post?.title }}</div>
+  <div class="title" [innerHTML]="post?.title ! | safeHTML"></div>
   <div class="author">author: {{ post?.owner?.username }}</div>
-  <p>{{ post?.content }}</p>
+  <p [innerHTML]=" post?.content! | safeHTML"></p>
   <div class="image-container">
     <img
       *ngFor="let image of post?.images"

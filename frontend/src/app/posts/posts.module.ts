@@ -15,6 +15,7 @@ import { CommentComponent } from './comment/comment.component';
 import {MatIconModule} from '@angular/material/icon'; 
 import {MatDialogModule} from '@angular/material/dialog';
 import { EditCommentDialogComponent } from './edit-comment-dialog/edit-comment-dialog.component'; 
+import { SafeHTMLPipe } from '../pipes/safe-html.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { EditCommentDialogComponent } from './edit-comment-dialog/edit-comment-d
     AddPostPageComponent,
     PostDetailsPageComponent,
     CommentComponent,
-    EditCommentDialogComponent
+    EditCommentDialogComponent,
+    SafeHTMLPipe
   ],
   imports: [
     CommonModule,

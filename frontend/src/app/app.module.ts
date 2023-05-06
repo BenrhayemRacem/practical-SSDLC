@@ -7,12 +7,14 @@ import { PostsModule } from './posts/posts.module';
 import {MatToolbarModule} from '@angular/material/toolbar'; 
 import {MatIconModule} from '@angular/material/icon'; 
 import { AuthModule } from './auth/auth.module';
-import { MatButtonModule } from '@angular/material/button'
+import { MatButtonModule } from '@angular/material/button';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    
     
   ],
   imports: [

@@ -1,0 +1,23 @@
+services:
+  practical-ssdlc-frontend:
+    image: racembenrhayem/practical-ssdlc-frontend
+    container_name: frontend
+    ports:
+      - 80:80
+    hostname: frontend
+    networks:
+      - practical-ssdlc
+  
+  practical-ssdlc-backend:
+    image: racembenrhayem/practical-ssdlc-back
+    container_name: backend
+    ports:
+      - 3000:3000
+    hostname: backend
+    networks:
+      - practical-ssdlc
+    volumes:
+      - ./backend/uploads:/app/uploads
+
+networks:
+  practical-ssdlc : {}

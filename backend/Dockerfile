@@ -6,10 +6,10 @@ COPY package.json .
 
 COPY package-lock.json .
 
-RUN npm install  
+RUN npm install
 
 COPY . .
 
-RUN node_modules/.bin/nest build 
+RUN node_modules/.bin/nest build
 
 CMD npm run start:prod

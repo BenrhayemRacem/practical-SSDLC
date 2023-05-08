@@ -7,8 +7,6 @@ services:
     hostname: frontend
     networks:
       - practical-ssdlc
-    
-  
   practical-ssdlc-backend:
     image: racembenrhayem/practical-ssdlc-back
     container_name: backend
@@ -21,4 +19,4 @@ services:
       - ./backend/uploads:/app/uploads
 
 networks:
-  practical-ssdlc : {}
+  practical-ssdlc: {}

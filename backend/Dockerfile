@@ -6,7 +6,7 @@ COPY package.json .
 
 COPY package-lock.json .
 
-RUN npm install  
+RUN npm install
 
 COPY ./src ./src
 COPY ./.env .
@@ -14,6 +14,6 @@ COPY nest-cli.json .
 COPY tsconfig.build.json .
 COPY tsconfig.json .
 
-RUN node_modules/.bin/nest build 
+RUN node_modules/.bin/nest build
 
-CMD npm run start:prod 
+CMD npm run start:prod

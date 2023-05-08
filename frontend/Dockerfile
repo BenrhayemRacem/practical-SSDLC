@@ -15,13 +15,8 @@ RUN npm install --ignore-scripts
 
 COPY ./src ./src
 
-RUN ls 
 RUN node_modules/.bin/ng analytics disable --global
 RUN node_modules/.bin/ng build --configuration production --aot
 #stage 2
 FROM nginx:alpine
 COPY --from=node /app/dist/frontend /usr/share/nginx/html
-
-
-
- 

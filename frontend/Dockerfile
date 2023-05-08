@@ -11,7 +11,7 @@ COPY ./tsconfig.json .
 COPY ./angular.json .
 COPY ./tsconfig.app.json .
 COPY ./tsconfig.spec.json .
-RUN npm install --ignore-scripts 
+RUN npm install --ignore-scripts
 
 COPY ./src ./src
 

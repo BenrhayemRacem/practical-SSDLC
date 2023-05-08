@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ServiceUnavailableException, ValidationPipe } from '@nestjs/common';
-import toobusy from 'toobusy-js';
+import * as toobusy from 'toobusy-js';
 import * as hpp from 'hpp';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

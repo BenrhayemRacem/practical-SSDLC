@@ -10,6 +10,7 @@ import {
   Request,
   UseInterceptors,
   UploadedFiles,
+  BadRequestException,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -17,8 +18,9 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { PostPermissionGuard } from './guards/permission.guard';
 import { FilesInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
+import { FileFilterCallback, diskStorage } from 'multer';
 import { editFileName } from 'src/common/utilities/editFileName';
+import * as path from 'path';
 
 @Controller('posts')
 export class PostsController {
@@ -31,11 +33,26 @@ export class PostsController {
       storage: diskStorage({
         destination: './uploads',
         filename: editFileName,
-
       }),
-      limits : {
-        fileSize: 8000000
-      }
+      limits: {
+        fileSize: 8000000,
+      },
+      fileFilter: function (
+        req: Express.Request,
+        file: Express.Multer.File,
+        callback: FileFilterCallback,
+      ) {
+        const ext = path.extname(file.originalname);
+        if (
+          ext !== '.png' &&
+          ext !== '.jpg' &&
+          ext !== '.gif' &&
+          ext !== '.jpeg'
+        ) {
+          return callback(new BadRequestException('Only images are allowed'));
+        }
+        callback(null, true);
+      },
     }),
   )
   create(

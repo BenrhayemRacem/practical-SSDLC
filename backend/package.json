@@ -28,7 +28,7 @@
     "@nestjs/mongoose": "^9.2.2",
     "@nestjs/passport": "^9.0.3",
     "@nestjs/platform-express": "^9.0.0",
-    "@nestjs/serve-static": "^3.0.1",
+    "@nestjs/serve-static": "^4.0.0",
     "@nestjs/throttler": "^4.0.0",
     "@types/hpp": "^0.2.2",
     "@types/toobusy-js": "^0.5.2",
